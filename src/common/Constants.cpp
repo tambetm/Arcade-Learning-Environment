@@ -56,7 +56,7 @@ std::string action_to_string(Action a) {
         ,"__invalid__" // 36
         ,"__invalid__" // 37
         ,"__invalid__" // 38
-        ,"__invalid__" // 39
+        ,"SELECT"      // 39
         ,"RESET"       // 40
         ,"UNDEFINED"   // 41
         ,"RANDOM"      // 42

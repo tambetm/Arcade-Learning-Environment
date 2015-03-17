@@ -63,6 +63,7 @@ MODULE_OBJS := \
 	src/games/supported/Venture.o \
 	src/games/supported/VideoPinball.o \
 	src/games/supported/WizardOfWor.o \
+	src/games/supported/WizardOfWor2Player.o \
 	src/games/supported/YarsRevenge.o \
 	src/games/supported/Zaxxon.o \
 

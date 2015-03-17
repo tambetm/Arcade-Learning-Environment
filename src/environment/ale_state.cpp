@@ -183,6 +183,10 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
   if (player_a_action == RESET || player_b_action == RESET) 
     event->set(Event::ConsoleReset, 1);
 
+  // Handle select
+  if (player_a_action == SELECT || player_b_action == SELECT) 
+    event->set(Event::ConsoleSelect, 1);
+
   // Now add the fire event 
   switch (player_a_action) {
         case PLAYER_A_FIRE: 
@@ -310,8 +314,13 @@ void ALEState::setActionJoysticks(Event* event, int player_a_action, int player_
           event->set(Event::JoystickZeroLeft, 1);
           event->set(Event::JoystickZeroFire, 1);
           break; 
+      case SELECT:
+          event->set(Event::ConsoleSelect, 1);
+          cerr << "Player A: sending SELECT..." << endl;
+          break;
       case RESET:
           event->set(Event::ConsoleReset, 1);
+          cerr << "Player A: sending RESET..." << endl;
           break;
       default: 
           cerr << "Invalid Player A Action: " << player_a_action;
@@ -406,6 +415,10 @@ void ALEState::setActionJoysticks(Event* event, int player_a_action, int player_
           event->set(Event::JoystickOneLeft, 1);
           event->set(Event::JoystickOneFire, 1);
           break; 
+      case SELECT:
+          event->set(Event::ConsoleSelect, 1);
+          cerr << "Sending Select..." << endl;
+          break;
       case RESET:
           event->set(Event::ConsoleReset, 1);
           cerr << "Sending Reset..." << endl;
@@ -422,6 +435,7 @@ void ALEState::setActionJoysticks(Event* event, int player_a_action, int player_
  * ***************************************************************************/
 void ALEState::resetKeys(Event* event) {
     event->set(Event::ConsoleReset, 0);
+    event->set(Event::ConsoleSelect, 0);
     event->set(Event::JoystickZeroFire, 0);
     event->set(Event::JoystickZeroUp, 0);
     event->set(Event::JoystickZeroDown, 0);
