@@ -36,6 +36,8 @@ while not game_over:
 
     reward = float(episode_info[1]) # reward obtained this timestep
     game_over = int(episode_info[0]) # sends 1 if episode ended this timestep  
+    if reward > 0:
+        print "Got", reward, "points"
 
     player_a_action = random.randint(0,17)
     player_b_action = random.randint(18,35)

@@ -33,11 +33,16 @@ RomSettings* WizardOfWor2PlayerSettings::clone() const {
 void WizardOfWor2PlayerSettings::step(const System& system) {
 
     // update the reward
-    reward_t score = getDecimalScore(6, 8, &system);
-    if (score >= 8000) score -= 8000; // MGB score does not go beyond 999
-    score *= 100;
-    m_reward = score - m_score;
-    m_score = score;
+    reward_t player_a_score = getDecimalScore(6, 8, &system);
+    if (player_a_score >= 8000) player_a_score -= 8000; // MGB score does not go beyond 999
+    player_a_score *= 100;
+
+    reward_t player_b_score = getDecimalScore(5, 7, &system);
+    if (player_b_score >= 8000) player_b_score -= 8000; // MGB score does not go beyond 999
+    player_b_score *= 100;
+
+    m_reward = player_a_score + player_b_score - m_score;
+    m_score = player_a_score + player_b_score;
 
     // update terminal status
     int newLives = readRam(&system, 0x0D) & 15;
